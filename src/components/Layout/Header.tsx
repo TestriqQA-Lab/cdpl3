@@ -645,9 +645,7 @@ const Header = () => {
                   aria-label="Jobs"
                   className="absolute left-0 top-full mt-0 w-64 bg-white border border-gray-200 rounded-xl shadow-2xl py-2 z-50"
                 >
-                  <div className="px-4 py-2 border-b border-gray-100">
-                    <p className="text-xs uppercase tracking-wider text-gray-500">Explore</p>
-                  </div>
+                  
                   <div className="py-1">
                     <Link
                       href="/jobs/live-jobs"
@@ -714,9 +712,6 @@ const Header = () => {
                   aria-label="About"
                   className="absolute left-0 top-full mt-0 w-64 bg-white border border-gray-200 rounded-xl shadow-2xl py-2 z-50"
                 >
-                  <div className="px-4 py-2 border-b border-gray-100">
-                    <p className="text-xs uppercase tracking-wider text-gray-500">Explore</p>
-                  </div>
                   <div className="py-1">
                     <Link
                       href="/about-us"
