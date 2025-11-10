@@ -38,21 +38,24 @@ async function sendEmail(mailOptions: nodemailer.SendMailOptions) {
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { fullName, email, phone, type, source } = body; // 'type': 'contact' or 'brochure', 'source': form location
+    const { fullName, email, phone, type, source, interest, message } = body; // 'type': 'contact' or 'brochure', 'source': form location
 
     // 1. Basic Validation
     if (!fullName || !email || !phone) {
       return NextResponse.json({ message: 'Missing required fields' }, { status: 400 });
     }
 
-    // 2. Determine Email Content based on 'type'
+    // 2. Determine Email Content based on 'type' and available fields
     const isBrochureRequest = type === 'brochure';
     const formSource = source || (isBrochureRequest ? 'Home Page - Brochure Download Modal' : 'Contact Form');
     const subjectPrefix = isBrochureRequest ? '[BROCHURE DOWNLOAD - HOME PAGE]' : '[NEW LEAD]';
-    const adminTemplate = isBrochureRequest ? 'admin-notification.html' : 'admin-notification.html'; // Reusing admin template for simplicity
+    
+    // Use detailed template if interest or message is provided, otherwise use basic template
+    const hasDetailedFields = interest || message;
+    const adminTemplate = hasDetailedFields ? 'admin-notification.html' : 'admin-notification-basic.html';
 
     // 3. Prepare Admin Notification Email
-    const adminData = {
+    const adminData: Record<string, string> = {
       fullName,
       email,
       phone,
@@ -60,6 +63,12 @@ export async function POST(request: Request) {
       source: formSource,
       downloadLink: isBrochureRequest ? BROCHURE_DOWNLOAD_LINK : 'N/A',
     };
+    
+    // Only include interest and message if they exist (for detailed template)
+    if (hasDetailedFields) {
+      if (interest) adminData.interest = interest;
+      if (message) adminData.message = message;
+    }
     const adminHtml = await getTemplatedEmail(adminTemplate, adminData);
 
     const adminMailOptions: nodemailer.SendMailOptions = {
