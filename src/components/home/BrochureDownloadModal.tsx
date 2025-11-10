@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, User, Mail, Phone as PhoneIcon, Download, CheckCircle2, Loader2 } from 'lucide-react';
 import PhoneInput from 'react-phone-number-input';
@@ -146,8 +146,8 @@ const BrochureDownloadModal: React.FC<BrochureDownloadModalProps> = ({ isOpen, o
           },
           body: JSON.stringify({
             ...formData,
-            phone: formData.phone || 'Not provided', // Handle optional phone
-            type: 'brochure' // Specify this is a brochure request
+            phone: formData.phone || 'Not provided',
+            type: 'brochure'
           }),
         });
 
@@ -155,7 +155,6 @@ const BrochureDownloadModal: React.FC<BrochureDownloadModalProps> = ({ isOpen, o
           console.log('Brochure request submitted successfully');
           setIsSubmitted(true);
           
-          // Reset form after 3 seconds and close modal
           setTimeout(() => {
             setIsSubmitted(false);
             setFormData({
@@ -177,8 +176,8 @@ const BrochureDownloadModal: React.FC<BrochureDownloadModalProps> = ({ isOpen, o
     }
   };
 
-  // Handle modal close
-  const handleClose = () => {
+  // Handle modal close - Memoized with useCallback
+  const handleClose = useCallback(() => {
     if (!isSubmitting) {
       setFormData({
         fullName: '',
@@ -191,9 +190,9 @@ const BrochureDownloadModal: React.FC<BrochureDownloadModalProps> = ({ isOpen, o
       setIsSubmitted(false);
       onClose();
     }
-  };
+  }, [isSubmitting, onClose]);
 
-  // Handle escape key
+  // Handle escape key - Now stable with memoized handleClose
   React.useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && !isSubmitting) {
@@ -210,7 +209,7 @@ const BrochureDownloadModal: React.FC<BrochureDownloadModalProps> = ({ isOpen, o
       document.removeEventListener('keydown', handleEscape);
       document.body.style.overflow = 'unset';
     };
-  }, [isOpen, isSubmitting]);
+  }, [isOpen, isSubmitting, handleClose]);
 
   return (
     <AnimatePresence>

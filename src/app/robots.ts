@@ -1,0 +1,132 @@
+import { MetadataRoute } from 'next';
+
+/**
+ * Robots.txt configuration for CDPL
+ * Next.js 15 App Router format
+ * 
+ * Optimized for:
+ * - Traditional search engines (Google, Bing, Yahoo)
+ * - AI crawlers (GPTBot, Claude-Web, Google-Extended)
+ * - Social media bots (Facebook, Twitter, LinkedIn)
+ * - Generative Engine Optimization (GEO)
+ */
+export default function robots(): MetadataRoute.Robots {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.cinutedigital.com';
+
+  return {
+    rules: [
+      // ========================================
+      // RULE 1: Traditional Search Engine Bots
+      // ========================================
+      {
+        userAgent: [
+          'Googlebot',
+          'Googlebot-Image',
+          'Googlebot-Video',
+          'Googlebot-News',
+          'Bingbot',
+          'Slurp',        // Yahoo
+          'DuckDuckBot',  // DuckDuckGo
+          'Baiduspider',  // Baidu
+          'YandexBot',    // Yandex
+        ],
+        allow: '/',
+        disallow: [
+          '/api/',
+          '/admin/',
+          '/_next/',
+          '/private/',
+          '/*.json$',
+          '/search?*',  // Avoid indexing search result pages
+        ],
+        crawlDelay: 0,
+      },
+
+      // ========================================
+      // RULE 2: AI Crawlers & LLM Bots
+      // ========================================
+      {
+        userAgent: [
+          'GPTBot',           // ChatGPT
+          'ChatGPT-User',     // ChatGPT User Agent
+          'Claude-Web',       // Anthropic Claude
+          'ClaudeBot',        // Anthropic Claude
+          'Google-Extended',  // Google Bard/Gemini
+          'Omgilibot',        // Omgili (AI training)
+          'FacebookBot',      // Meta AI
+          'Applebot-Extended', // Apple Intelligence
+          'anthropic-ai',     // Anthropic AI
+          'PerplexityBot',    // Perplexity AI
+          'YouBot',           // You.com AI
+        ],
+        allow: '/',
+        disallow: [
+          '/api/',
+          '/admin/',
+          '/_next/',
+          '/private/',
+        ],
+        crawlDelay: 1,  // Slightly slower for AI bots
+      },
+
+      // ========================================
+      // RULE 3: Social Media Crawlers
+      // ========================================
+      {
+        userAgent: [
+          'facebookexternalhit',
+          'Twitterbot',
+          'LinkedInBot',
+          'WhatsApp',
+          'TelegramBot',
+          'Slackbot',
+          'Discordbot',
+        ],
+        allow: '/',
+        disallow: [
+          '/api/',
+          '/admin/',
+          '/private/',
+        ],
+      },
+
+      // ========================================
+      // RULE 4: Block Bad Bots & Scrapers
+      // ========================================
+      {
+        userAgent: [
+          'MJ12bot',
+          'DotBot',
+          'BLEXBot',
+          'DataForSeoBot',
+          'PetalBot',
+        ],
+        disallow: '/',
+      },
+
+      // ========================================
+      // RULE 5: Default for All Other Bots
+      // ========================================
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: [
+          '/api/',
+          '/admin/',
+          '/_next/',
+          '/private/',
+        ],
+      },
+    ],
+
+    // ========================================
+    // SITEMAP LOCATION
+    // ========================================
+    sitemap: `${siteUrl}/sitemap.xml`,
+
+    // ========================================
+    // HOST (Preferred Domain)
+    // ========================================
+    host: siteUrl,
+  };
+}

@@ -1,0 +1,307 @@
+import { MetadataRoute } from 'next';
+import { statesData, getFlatLocations } from '@/data/cities/citiesData';
+import { pastEvents } from '@/data/eventsData';
+import { trainingServices } from '@/data/servicesData';
+import { BLOG_POSTS } from '@/data/BlogPostData';
+
+/**
+ * Dynamic XML Sitemap for CDPL
+ * Next.js 15 App Router format
+ * 
+ * Optimized for:
+ * - Search engines (Google, Bing, Yahoo)
+ * - AI crawlers (GPTBot, Claude, Gemini)
+ * - Generative Engine Optimization (GEO)
+ * 
+ * Features:
+ * - Dynamic URL generation
+ * - Priority and change frequency optimization
+ * - Last modified timestamps
+ * - Multi-language support ready
+ */
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.cinutedigital.com';
+  const currentDate = new Date().toISOString();
+
+  // ========================================
+  // STATIC PAGES
+  // ========================================
+  const staticPages: MetadataRoute.Sitemap = [
+    // Home Page - Highest Priority
+    {
+      url: siteUrl,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 1.0,
+    },
+
+    // Main Pages - High Priority
+    {
+      url: `${siteUrl}/about-us`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/courses`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/contact-us`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/mentors`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${siteUrl}/our-team`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${siteUrl}/reviews`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
+    {
+      url: `${siteUrl}/locations-we-serve`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+
+    // Services Pages
+    {
+      url: `${siteUrl}/services`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+
+    // Events Pages
+    {
+      url: `${siteUrl}/events`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
+    {
+      url: `${siteUrl}/events/past-events`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+
+    // Jobs & Careers Pages
+    {
+      url: `${siteUrl}/jobs/careers`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
+    {
+      url: `${siteUrl}/jobs/job-openings`,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/jobs/live-jobs`,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/jobs/placements`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    },
+
+    // Blog Pages
+    {
+      url: `${siteUrl}/blog`,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/all-posts`,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 0.7,
+    },
+    {
+      url: `${siteUrl}/blog/categories`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.6,
+    },
+
+    // Program Pages
+    {
+      url: `${siteUrl}/cdpl-affiliate-program`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${siteUrl}/cdpl-certificate-validation`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+
+    // Legal Pages - Lower Priority
+    {
+      url: `${siteUrl}/privacy-policy`,
+      lastModified: currentDate,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: `${siteUrl}/terms-of-service`,
+      lastModified: currentDate,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: `${siteUrl}/cookies-policy`,
+      lastModified: currentDate,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+    {
+      url: `${siteUrl}/cancellation-refund-policy`,
+      lastModified: currentDate,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    },
+  ];
+
+  // ========================================
+  // COURSE PAGES - High Priority
+  // ========================================
+  const coursePages: MetadataRoute.Sitemap = [
+    // Software Testing Courses
+    'manual-testing-course',
+    'automation-testing-course',
+    'advance-manual-automation-testing',
+    'advance-software-testing',
+    'api-testing',
+    'etl-testing',
+    'aaa-certification-course',
+    'actd-certification-training',
+
+    // Data & Analytics Courses
+    'data-science-course',
+    'data-analytics',
+    'data-engineering-course',
+    'dbms-course',
+
+    // AI & ML Courses
+    'ai-course',
+    'machine-learning-course',
+    'generative-ai-course',
+    'prompt-engineering-course',
+
+    // Programming Courses
+    'python-course',
+    'java-course',
+
+    // Digital Marketing
+    'digital-marketing-course',
+  ].map((slug) => ({
+    url: `${siteUrl}/${slug}`,
+    lastModified: currentDate,
+    changeFrequency: 'weekly' as const,
+    priority: 0.9,
+  }));
+
+  // ========================================
+  // DYNAMIC PAGES
+  // ========================================
+
+  // 1. City-Course Pages (e.g., /software-testing-course-in-mumbai)
+  const cityCoursePages: MetadataRoute.Sitemap = getFlatLocations(statesData).map((city) => ({
+    // The 'link' property in city object already contains the full slug path, e.g., /software-testing-course-in-mumbai
+    url: `${siteUrl}${city.link}`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }));
+
+  // 2. Events Pages (e.g., /events/ai-conference-nagindas-khandwala)
+  const eventPages: MetadataRoute.Sitemap = pastEvents.map((event) => ({
+    url: `${siteUrl}/events/${event.slug}`,
+    lastModified: event.lastModified || currentDate,
+    changeFrequency: 'weekly',
+    priority: 0.7,
+  }));
+
+  // 3. Services Pages (e.g., /services/expert-talks)
+  const servicePages: MetadataRoute.Sitemap = trainingServices.map((service) => ({
+    url: `${siteUrl}/services/${service.slug}`,
+    lastModified: currentDate,
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  }));
+
+  // 4. Individual Blog Posts (e.g., /blog/what-is-data-science)
+  // BLOG_POSTS is an array of BlogPost objects
+  const blogPostPages: MetadataRoute.Sitemap = BLOG_POSTS.map((post) => ({
+    url: `${siteUrl}/blog/${post.slug}`,
+    lastModified: post.lastModified || post.publishDate,
+    changeFrequency: 'daily',
+    priority: 0.7,
+  }));
+
+
+  // ========================================
+  // COMBINE ALL PAGES
+  // ========================================
+  return [
+    ...staticPages,
+    ...coursePages,
+    ...cityCoursePages,
+    ...eventPages,
+    ...servicePages,
+    ...blogPostPages,
+  ];
+}
+
+/**
+ * NOTES FOR DYNAMIC CONTENT:
+ * 
+ * If you have dynamic blog posts, events, or city pages, fetch them here:
+ * 
+ * // Example: Fetch blog posts
+ * const blogPosts = await fetch(`${siteUrl}/api/blog/posts`).then(r => r.json());
+ * const blogPages = blogPosts.map(post => ({
+ *   url: `${siteUrl}/blog/${post.slug}`,
+ *   lastModified: post.updatedAt,
+ *   changeFrequency: 'monthly',
+ *   priority: 0.7,
+ * }));
+ * 
+ * // Example: Fetch city pages
+ * const cities = await fetch(`${siteUrl}/api/cities`).then(r => r.json());
+ * const cityPages = cities.map(city => ({
+ *   url: `${siteUrl}/${city.slug}`,
+ *   lastModified: currentDate,
+ *   changeFrequency: 'monthly',
+ *   priority: 0.6,
+ * }));
+ * 
+ * Then add them to the return array:
+ * return [...staticPages, ...coursePages, ...blogPages, ...cityPages];
+ */
