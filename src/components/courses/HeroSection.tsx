@@ -47,13 +47,13 @@ export default function HeroSection() {
                             Industry-Leading Tech Education Platform
                         </div>
 
-                        <h1 className="mt-3 md:mt-0 text-3xl md:text-5xl font-black leading-[1.1] tracking-tight text-slate-900 mb-6">
+                        <h1 className="mt-3 md:mt-0 text-3xl md:text-5xl font-extrabold leading-[1.1] tracking-tight text-slate-900 mb-6">
                             Master In-Demand Tech Skills<br />
                             <span className="relative inline-block mt-2">
                                 <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 bg-clip-text text-transparent animate-gradient">
                                     Launch Your Career
                                 </span>
-                                <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 rounded-full" />
+                                <div className="absolute -bottom-2 left-0 right-0 h-1 bg-gradient-to-r from-[#ff8c00] to-[#ff6b00] rounded-full" />
                             </span>
                         </h1>
 
@@ -61,7 +61,7 @@ export default function HeroSection() {
 
                         <div className="sticky md:hidden top-6 mt-10 rounded-3xl border border-slate-200/60 bg-white/95 backdrop-blur-xl p-7 md:p-8 shadow-2xl shadow-slate-900/10 transition-all hover:shadow-slate-900/15">
                             {/* Decorative gradient accent */}
-                            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 rounded-t-3xl" />
+                            <div className="absolute top-px left-0 right-0 h-1.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 rounded-t-3xl" />
 
                             <h3 className="mb-2 text-xl text-slate-900 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text">Request a Callback</h3>
                             <p className="mb-7 text-sm text-slate-600 leading-relaxed">
@@ -113,7 +113,7 @@ export default function HeroSection() {
 
                                 <button
                                     type="submit"
-                                    className="group mt-3 inline-flex w-full items-center justify-center rounded-2xl bg-gradient-to-r from-indigo-600 to-violet-600 px-6 py-4 text-base font-bold text-white shadow-lg shadow-indigo-600/30 transition-all hover:shadow-xl hover:shadow-indigo-600/40 hover:scale-[1.02] active:scale-[0.98]"
+                                    className="group mt-3 inline-flex w-full items-center justify-center rounded-2xl bg-gradient-to-r from-[#ff8c00] to-[#ff6b00] px-6 py-4 text-base font-bold text-white shadow-lg shadow-indigo-600/30 transition-all hover:shadow-xl hover:shadow-indigo-600/40 hover:scale-[1.02] active:scale-[0.98]"
                                 >
                                     Get Course Details
                                     <ChevronRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -145,7 +145,7 @@ export default function HeroSection() {
                         {/* Enhanced CTAs with modern styling */}
                         <div className="flex flex-col sm:flex-row gap-4 mb-10">
                             <button
-                                className="group inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-blue-600/30 transition-all hover:shadow-xl hover:shadow-blue-600/40 hover:scale-105 hover:-translate-y-0.5"
+                                className="group inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-[#ff8c00] to-[#ff6b00] px-7 py-3.5 text-base font-semibold text-white shadow-lg shadow-blue-600/30 transition-all hover:shadow-xl hover:shadow-blue-600/40 hover:scale-105 hover:-translate-y-0.5"
                                 aria-label="Enroll Now"
                             >
                                 Enroll Now
@@ -226,7 +226,7 @@ export default function HeroSection() {
                     <div className="hidden md:block md:col-span-5 lg:col-span-4 mt-8 md:mt-0">
                         <div className="sticky top-6 rounded-3xl border border-slate-200/60 bg-white/95 backdrop-blur-xl p-7 md:p-8 shadow-2xl shadow-slate-900/10 transition-all hover:shadow-slate-900/15">
                             {/* Decorative gradient accent */}
-                            <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-600 via-indigo-600 to-violet-600 rounded-t-3xl" />
+                            <div className="absolute top-[0px] left-0 right-0 h-4 bg-gradient-to-r from-[#ff8c00] to-[#ff6b00] rounded-t-full" />
 
                             <h3 className="mb-2 text-xl text-slate-900 bg-gradient-to-r from-slate-900 to-slate-700 bg-clip-text">Request a Callback</h3>
                             <p className="mb-7 text-sm text-slate-600 leading-relaxed">
@@ -278,7 +278,7 @@ export default function HeroSection() {
 
                                 <button
                                     type="submit"
-                                    className="group mt-3 inline-flex w-full items-center justify-center rounded-2xl bg-gradient-to-r from-indigo-600 to-violet-600 px-6 py-4 text-base font-bold text-white shadow-lg shadow-indigo-600/30 transition-all hover:shadow-xl hover:shadow-indigo-600/40 hover:scale-[1.02] active:scale-[0.98]"
+                                    className="group mt-3 inline-flex w-full items-center justify-center rounded-2xl bg-gradient-to-r from-[#ff8c00] to-[#ff6b00] px-6 py-4 text-base font-bold text-white shadow-lg shadow-indigo-600/30 transition-all hover:shadow-xl hover:shadow-indigo-600/40 hover:scale-[1.02] active:scale-[0.98]"
                                 >
                                     Get Course Details
                                     <ChevronRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
