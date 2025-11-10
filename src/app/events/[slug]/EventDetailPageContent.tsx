@@ -2,8 +2,12 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
+import { Suspense } from 'react';
 
-export default function EventDetailPageContent() {
+// ============================================================================
+// INNER COMPONENT - Uses useSearchParams
+// ============================================================================
+function SearchParamsHandler() {
   const searchParams = useSearchParams();
   const ref = searchParams.get('ref');
 
@@ -14,4 +18,15 @@ export default function EventDetailPageContent() {
   }
 
   return null; // This component renders nothing visible
+}
+
+// ============================================================================
+// OUTER COMPONENT - Wraps with Suspense
+// ============================================================================
+export default function EventDetailPageContent() {
+  return (
+    <Suspense fallback={null}>
+      <SearchParamsHandler />
+    </Suspense>
+  );
 }

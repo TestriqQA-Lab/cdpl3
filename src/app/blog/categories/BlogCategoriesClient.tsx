@@ -2,8 +2,12 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
-export default function BlogCategoriesClient() {
+// ============================================================================
+// INNER COMPONENT - Uses useSearchParams
+// ============================================================================
+function SearchParamsHandler() {
   const searchParams = useSearchParams();
   const category = searchParams.get("category");
 
@@ -15,4 +19,15 @@ export default function BlogCategoriesClient() {
 
   // This component renders **nothing** – it only reads the query string.
   return null;
+}
+
+// ============================================================================
+// OUTER COMPONENT - Wraps with Suspense
+// ============================================================================
+export default function BlogCategoriesClient() {
+  return (
+    <Suspense fallback={null}>
+      <SearchParamsHandler />
+    </Suspense>
+  );
 }

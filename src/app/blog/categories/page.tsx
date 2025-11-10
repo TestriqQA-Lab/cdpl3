@@ -4,7 +4,6 @@ import { BlogCategoryMenu } from "@/components/blog";
 import { getAllCategories, getAllPosts } from "@/data/BlogPostData";
 import Link from "next/link";
 import { FolderOpen, ArrowRight, FileText, TrendingUp } from "lucide-react";
-import { Suspense } from "react";
 import BlogCategoriesClient from "./BlogCategoriesClient";
 
 // ============================================================================
@@ -394,9 +393,7 @@ export default function CategoriesPage() {
       </div>
 
       {/* Client-side query param handling */}
-      <Suspense fallback={null}>
-        <BlogCategoriesClient />
-      </Suspense>
+      <BlogCategoriesClient />
     </>
   );
 }

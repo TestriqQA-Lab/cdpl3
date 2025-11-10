@@ -2,11 +2,14 @@
 
 import { usePathname, useSearchParams } from "next/navigation";
 import Script from "next/script";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
-const GoogleAnalytics = () => {
+// ============================================================================
+// INNER COMPONENT - Uses useSearchParams
+// ============================================================================
+function GoogleAnalyticsTracker() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -20,6 +23,13 @@ const GoogleAnalytics = () => {
     }
   }, [pathname, searchParams]);
 
+  return null;
+}
+
+// ============================================================================
+// OUTER COMPONENT - Wraps with Suspense and includes Scripts
+// ============================================================================
+const GoogleAnalytics = () => {
   if (!GA_MEASUREMENT_ID) {
     return null;
   }
@@ -42,6 +52,9 @@ const GoogleAnalytics = () => {
           `,
         }}
       />
+      <Suspense fallback={null}>
+        <GoogleAnalyticsTracker />
+      </Suspense>
     </>
   );
 };
