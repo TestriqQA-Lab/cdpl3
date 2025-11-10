@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { Clock, Users, ArrowRight, Star, Zap, Download, BookOpen, Gauge, Shield, Smartphone, CheckCircle, Cpu, BarChart3, Code, TrendingUp } from 'lucide-react';
 import { DownloadFormButton } from '@/components/DownloadForm';
@@ -52,6 +52,8 @@ interface Course {
   link: string;
   icon: keyof typeof iconMap;
   features: string[];
+  /** Optional per-course offer end timestamp (ISO). If omitted, defaults to +48h from mount */
+  offerEndsAt?: string;
 }
 
 const iconMap = {
@@ -81,6 +83,7 @@ const COURSES: Course[] = [
     link: '/manual-testing-course',
     icon: 'BookOpen',
     features: ['ISTQB Foundation Prep', 'Test Case Design', 'Defect Life Cycle'],
+    // offerEndsAt: '2025-11-15T18:29:59.000Z',
   },
   {
     id: 2,
@@ -169,7 +172,7 @@ const COURSES: Course[] = [
     features: ['Data Cleaning & Preprocessing', 'Advanced Excel', 'Data Visualization'],
   },
 
-  // --- Business Intelligence Courses (Mapped from Header.tsx - part of Data Science category) ---
+  // --- Business Intelligence Courses ---
   {
     id: 8,
     title: 'Data Analysis with BI & Big Data Engineering Master Program',
@@ -199,7 +202,7 @@ const COURSES: Course[] = [
     features: ['Hadoop & Spark', 'NoSQL Databases', 'Data Pipelines'],
   },
 
-  // --- Artificial Intelligence Courses (Mapped from Header.tsx - part of Data Science category) ---
+  // --- Artificial Intelligence Courses ---
   {
     id: 10,
     title: 'Comprehensive Data Science and AI - Master Program',
@@ -243,7 +246,7 @@ const COURSES: Course[] = [
     features: ['Advanced Prompting', 'AI Tools', 'Creative AI'],
   },
 
-  // --- Digital Marketing Courses (Mapped from Header.tsx) ---
+  // --- Digital Marketing Courses ---
   {
     id: 13,
     title: 'Digital Marketing and Analytics - Master Program',
@@ -260,13 +263,29 @@ const COURSES: Course[] = [
   },
 ];
 
-// --- Course Card Component (Styled like ModuleCard) ---
-const CourseCard: React.FC<{ course: Course; index: number }> = ({ course, index }) => {
+// --- Helpers for timer like in ModuleCard ---
+const pad = (n: number) => n.toString().padStart(2, '0');
+
+// --- Course Card Component (extracted layout/design/features from ModuleCard) ---
+const CourseCard: React.FC<{ course: Course; index: number; nowMs: number }> = ({ course, index, nowMs }) => {
   const variant = pickVariant(index);
   const itemVariants: Variants = {
     hidden: { opacity: 0, y: 18 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
+
+  // 48h fallback window from first mount (matches ModuleCard behavior)
+  const fallbackDeadlineRef = React.useRef<Date | null>(null);
+  if (!course.offerEndsAt && !fallbackDeadlineRef.current) {
+    fallbackDeadlineRef.current = new Date(Date.now() + 48 * 3600 * 1000);
+  }
+  const target: Date = course.offerEndsAt ? new Date(course.offerEndsAt) : (fallbackDeadlineRef.current as Date);
+  const diff = Math.max(0, target.getTime() - nowMs);
+  const totalSeconds = Math.floor(diff / 1000);
+  const hours = pad(Math.floor(totalSeconds / 3600));
+  const minutes = pad(Math.floor((totalSeconds % 3600) / 60));
+  const seconds = pad(totalSeconds % 60);
+  const isOver = diff <= 0;
 
   return (
     <motion.article
@@ -355,6 +374,51 @@ const CourseCard: React.FC<{ course: Course; index: number }> = ({ course, index
           ))}
         </ul>
 
+        {/* Extracted timer block from ModuleCard (boxed H/M/S grid) */}
+        <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+          <p className="text-xs font-semibold text-slate-600 mb-2">
+            Limited-time offer ends in
+          </p>
+
+          <div
+            className="grid grid-cols-3 gap-3 text-center"
+            role="timer"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            <div className="rounded-lg bg-white shadow-sm p-3">
+              <div className="text-xl font-bold text-slate-900 tabular-nums">
+                {hours}
+              </div>
+              <div className="text-[10px] text-slate-500 tracking-wide uppercase">
+                Hours
+              </div>
+            </div>
+            <div className="rounded-lg bg-white shadow-sm p-3">
+              <div className="text-xl font-bold text-slate-900 tabular-nums">
+                {minutes}
+              </div>
+              <div className="text-[10px] text-slate-500 tracking-wide uppercase">
+                Minutes
+              </div>
+            </div>
+            <div className="rounded-lg bg-white shadow-sm p-3">
+              <div className="text-xl font-bold text-slate-900 tabular-nums">
+                {seconds}
+              </div>
+              <div className="text-[10px] text-slate-500 tracking-wide uppercase">
+                Seconds
+              </div>
+            </div>
+          </div>
+
+          {isOver && (
+            <p className="mt-2 text-xs text-red-600 font-semibold">
+              Offer has ended.
+            </p>
+          )}
+        </div>
+
         <div className="pt-4 space-y-3 mt-auto">
           <Link
             href={course.link}
@@ -374,12 +438,14 @@ const CourseCard: React.FC<{ course: Course; index: number }> = ({ course, index
             }
             buttonClassName="w-full flex items-center justify-center space-x-2 text-slate-700 font-semibold py-3 rounded-xl border-2 border-slate-200 hover:border-slate-300 hover:bg-slate-50 transition-all duration-300"
             onSubmit={(values) => {
-              // Replace with your actual submission logic (e.g., API call, analytics, file download)
               console.log("Download form submitted:", { ...values, course: course.title });
             }}
           />
         </div>
       </div>
+
+      {/* Subtle overlay like ModuleCard */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black/0 to-black/0 group-hover:from-black/0 group-hover:to-black/0 transition-all duration-500 pointer-events-none" />
     </motion.article>
   );
 };
@@ -395,6 +461,13 @@ export default function HomeFeaturedCoursesSection() {
   // Updated categories as requested
   const ALL_CATEGORIES = ['All', 'Software Testing', 'Data Science', 'Business Intelligence', 'Artificial Intelligence', 'Digital Marketing'];
   const [activeCategory, setActiveCategory] = useState(ALL_CATEGORIES[0]);
+
+  // Ticking clock passed to each card (matches ModuleCard pattern)
+  const [nowMs, setNowMs] = useState<number>(() => Date.now());
+  useEffect(() => {
+    const id = setInterval(() => setNowMs(Date.now()), 1000);
+    return () => clearInterval(id);
+  }, []);
 
   const filteredCourses = activeCategory === 'All'
     ? COURSES
@@ -432,11 +505,10 @@ export default function HomeFeaturedCoursesSection() {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 text-sm ${
-                activeCategory === category
-                  ? 'bg-brand text-white shadow-lg'
-                  : 'bg-white text-gray-700 hover:bg-orange-50 border border-gray-200'
-              }`}
+              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 text-sm ${activeCategory === category
+                ? 'bg-brand text-white shadow-lg'
+                : 'bg-white text-gray-700 hover:bg-orange-50 border border-gray-200'
+                }`}
             >
               {category}
             </button>
@@ -446,7 +518,7 @@ export default function HomeFeaturedCoursesSection() {
         {/* Course Cards Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredCourses.map((course, index) => (
-            <CourseCard key={course.id} course={course} index={index} />
+            <CourseCard key={course.id} course={course} index={index} nowMs={nowMs} />
           ))}
         </div>
 
