@@ -80,7 +80,7 @@ export default function CtaSection() {
 
                     {/* What's Included */}
                     <div className="bg-white/5 backdrop-blur-sm rounded-lg p-8 border border-white/10">
-                        <h3 className="text-2xl font-bold text-white mb-6">What's Included</h3>
+                        <h3 className="text-2xl font-bold text-white mb-6">What&apos;s Included</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
                             {[
                                 "20 hours of intensive live training",

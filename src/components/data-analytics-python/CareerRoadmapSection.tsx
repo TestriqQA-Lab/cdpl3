@@ -100,7 +100,7 @@ export default function CareerRoadmapSection() {
                         Your <span className="text-orange-600">Career Roadmap</span>
                     </h2>
                     <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                        Follow a structured path to career advancement in data analytics. From junior analyst to industry leader, we'll guide you every step of the way.
+                        Follow a structured path to career advancement in data analytics. From junior analyst to industry leader, we&apos;ll guide you every step of the way.
                     </p>
                 </div>
 

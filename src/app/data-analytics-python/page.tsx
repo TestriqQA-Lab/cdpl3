@@ -1,6 +1,5 @@
 import HeroSection from "@/components/data-analytics-python/HeroSection";
 import StatsSection from "@/components/data-analytics-python/StatsSection";
-import WhySEOProgram from "@/components/data-analytics-python/WhyAnalyticsPythonProgram";
 import CurriculumSection from "@/components/data-analytics-python/CurriculumSection";
 import ProjectsSection from "@/components/data-analytics-python/ProjectsSection";
 import TestimonialsSection from "@/components/data-analytics-python/TestimonialsSection";

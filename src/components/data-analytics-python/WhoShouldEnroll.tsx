@@ -1,4 +1,4 @@
-import { CheckCircle, Users } from "lucide-react";
+import { CheckCircle} from "lucide-react";
 
 interface AudienceSegment {
     title: string;

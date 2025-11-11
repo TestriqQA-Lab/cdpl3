@@ -183,12 +183,12 @@ export default function HeroSection() {
             {/* JSON-LD for SEO */}
             <script
                 type="application/ld+json"
-                // @ts-ignore
+                // @"@ts-expect-error
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
             />
             <script
                 type="application/ld+json"
-                // @ts-ignore
+                // @"@ts-expect-error
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
             />
 
