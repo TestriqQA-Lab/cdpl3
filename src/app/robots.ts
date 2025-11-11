@@ -66,7 +66,6 @@ export default function robots(): MetadataRoute.Robots {
           '/_next/',
           '/private/',
         ],
-        crawlDelay: 1,  // Slightly slower for AI bots
       },
 
       // ========================================
@@ -124,9 +123,5 @@ export default function robots(): MetadataRoute.Robots {
     // ========================================
     sitemap: `${siteUrl}/sitemap.xml`,
 
-    // ========================================
-    // HOST (Preferred Domain)
-    // ========================================
-    host: siteUrl,
   };
 }
