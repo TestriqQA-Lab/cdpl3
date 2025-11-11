@@ -62,7 +62,7 @@ export default function StatsSection() {
                         Why Invest in <span className="text-orange-600">Data Analytics</span>?
                     </h2>
                     <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                        The data analytics industry is booming with incredible opportunities. Here's why this course is your gateway to a lucrative career.
+                        The data analytics industry is booming with incredible opportunities. Here&apos;s why this course is your gateway to a lucrative career.
                     </p>
                 </div>
 
@@ -113,7 +113,7 @@ export default function StatsSection() {
                                 The Data Revolution is Here
                             </h3>
                             <p className="text-slate-600 leading-relaxed">
-                                Every organization across finance, healthcare, retail, technology, and marketing is desperately seeking skilled data professionals. With Python data analytics skills, you're not just learning a tool—you're securing your future in one of the fastest-growing industries. Our comprehensive 20-hour program bridges the gap between academic learning and industry demands, ensuring you're job-ready from day one.
+                                Every organization across finance, healthcare, retail, technology, and marketing is desperately seeking skilled data professionals. With Python data analytics skills, you&apos;re not just learning a tool—you&apos;re securing your future in one of the fastest-growing industries. Our comprehensive 20-hour program bridges the gap between academic learning and industry demands, ensuring you&apos;re job-ready from day one.
                             </p>
                         </div>
                     </div>

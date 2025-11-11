@@ -102,7 +102,7 @@ export default function FaqSection() {
                         <div className="space-y-4">
                             {faqs
                                 .filter((faq) => faq.category === category)
-                                .map((faq, idx) => {
+                                .map((faq,) => {
                                     const globalIdx = faqs.indexOf(faq);
                                     return (
                                         <div
@@ -148,7 +148,7 @@ export default function FaqSection() {
                         Still Have Questions?
                     </h3>
                     <p className="text-slate-600 mb-6 max-w-2xl mx-auto">
-                        Our enrollment team is here to help! Reach out to us via phone, email, or contact form, and we'll provide personalized guidance.
+                        Our enrollment team is here to help! Reach out to us via phone, email, or contact form, and we&apos;ll provide personalized guidance.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                         <a
