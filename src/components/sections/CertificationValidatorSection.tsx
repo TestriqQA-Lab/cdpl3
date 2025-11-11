@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, Suspense } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Certificate, getCertificateById } from "@/data/certificates/registry";
@@ -21,7 +21,10 @@ const CertificationPreviewSection = dynamic(
   { ssr: false, loading: () => <SectionLoader label="Loading preview..." /> }
 );
 
-export default function CertificationValidatorSection() {
+// ============================================================================
+// INNER COMPONENT - Uses useSearchParams
+// ============================================================================
+function CertificationValidatorContent() {
   const [query, setQuery] = useState("");
   const [result, setResult] = useState<Certificate | null>(null);
   const [error, setError] = useState("");
@@ -298,5 +301,16 @@ export default function CertificationValidatorSection() {
         <p className="sr-only">Validate CDPL AAA and ACTD certificates using their unique IDs.</p>
       </div>
     </section>
+  );
+}
+
+// ============================================================================
+// OUTER COMPONENT - Wraps with Suspense
+// ============================================================================
+export default function CertificationValidatorSection() {
+  return (
+    <Suspense fallback={<SectionLoader label="Loading validator..." />}>
+      <CertificationValidatorContent />
+    </Suspense>
   );
 }

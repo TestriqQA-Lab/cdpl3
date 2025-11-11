@@ -350,23 +350,31 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
                 {/* Category Navigation Menu */}
                 <nav aria-label="Blog categories">
-                    <BlogCategoryMenu />
+                    <React.Suspense fallback={<div>Loading menu...</div>}>
+                        <BlogCategoryMenu />
+                    </React.Suspense>
                 </nav>
 
                 {/* Blog Post Hero Section */}
                 <header>
-                    <BlogPostHeroSection slug={slug} />
+                    <React.Suspense fallback={<div>Loading header...</div>}>
+                        <BlogPostHeroSection slug={slug} />
+                    </React.Suspense>
                 </header>
 
                 {/* Blog Post Main Content */}
                 <main role="main" aria-label="Article content">
-                    <BlogPostSection slug={slug} />
+                    <React.Suspense fallback={<div>Loading content...</div>}>
+                        <BlogPostSection slug={slug} />
+                    </React.Suspense>
                 </main>
 
                 {/* Contact Section */}
-                <aside role="complementary" aria-label="Contact information">
-                    <BlogPostContactSection />
-                </aside>
+	                <aside role="complementary" aria-label="Contact information">
+	                    <React.Suspense fallback={<div>Loading contact form...</div>}>
+	                        <BlogPostContactSection />
+	                    </React.Suspense>
+	                </aside>
             </article>
         </>
     );

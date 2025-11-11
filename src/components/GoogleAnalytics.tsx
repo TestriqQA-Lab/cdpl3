@@ -1,14 +1,15 @@
-// src/components/GoogleAnalytics.tsx
-'use client';
+"use client";
 
-import { usePathname, useSearchParams } from 'next/navigation';
-import Script from 'next/script';
-import { useEffect } from 'react';
+import { usePathname, useSearchParams } from "next/navigation";
+import Script from "next/script";
+import { useEffect, Suspense } from "react";
 
-// Replace with your actual GA_MEASUREMENT_ID
 const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 
-const GoogleAnalytics = () => {
+// ============================================================================
+// INNER COMPONENT - Uses useSearchParams
+// ============================================================================
+function GoogleAnalyticsTracker() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -16,37 +17,44 @@ const GoogleAnalytics = () => {
     if (GA_MEASUREMENT_ID) {
       const url = pathname + searchParams.toString();
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (window as any).gtag('config', GA_MEASUREMENT_ID, {
+      (window as any).gtag("config", GA_MEASUREMENT_ID, {
         page_path: url,
       });
     }
   }, [pathname, searchParams]);
 
+  return null;
+}
+
+// ============================================================================
+// OUTER COMPONENT - Wraps with Suspense and includes Scripts
+// ============================================================================
+const GoogleAnalytics = () => {
   if (!GA_MEASUREMENT_ID) {
     return null;
   }
 
   return (
     <>
-      {/* Global Site Tag (gtag.js) - Google Analytics */}
       <Script
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
       />
       <Script
-        id="google-analytics-init"
+        id="gtag-init"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${GA_MEASUREMENT_ID}', {
-              page_path: window.location.pathname,
-            });
+            gtag('config', '${GA_MEASUREMENT_ID}');
           `,
         }}
       />
+      <Suspense fallback={null}>
+        <GoogleAnalyticsTracker />
+      </Suspense>
     </>
   );
 };
