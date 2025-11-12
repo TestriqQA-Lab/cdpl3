@@ -126,13 +126,13 @@ export function generateOrganizationSchema(): WithContext<Record<string, unknown
     foundingDate: BUSINESS_INFO.foundedYear,
     
     // Number of Employees
-    // numberOfEmployees: {
-    //   '@type': 'QuantitativeValue',
-    //   value: BUSINESS_INFO.numberOfEmployees,
-    // },
+    numberOfEmployees: {
+      '@type': 'QuantitativeValue',
+      value: BUSINESS_INFO.numberOfEmployees,
+    },
     
     // Price Range
-    // priceRange: BUSINESS_INFO.priceRange,
+    priceRange: BUSINESS_INFO.priceRange,
     
     // Opening Hours
     openingHoursSpecification: BUSINESS_INFO.openingHours.map((hours) => {
@@ -162,6 +162,74 @@ export function generateOrganizationSchema(): WithContext<Record<string, unknown
       },
       name: cert.name,
     })),
+    
+    // Course Offerings
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Training Courses',
+      itemListElement: [
+        {
+          '@type': 'Course',
+          name: 'Software Testing Training',
+          description: 'Comprehensive software testing course with manual and automation testing',
+          provider: {
+            '@type': 'EducationalOrganization',
+            name: SITE_CONFIG.name,
+          },
+          hasCourseInstance: {
+            '@type': 'CourseInstance',
+            courseMode: 'online',
+            courseWorkload: 'P3M',
+          },
+          offers: {
+            '@type': 'Offer',
+            price: '25000',
+            priceCurrency: 'INR',
+            category: 'Paid',
+          },
+        },
+        {
+          '@type': 'Course',
+          name: 'Data Science Training',
+          description: 'Complete data science course with Python, ML, and AI',
+          provider: {
+            '@type': 'EducationalOrganization',
+            name: SITE_CONFIG.name,
+          },
+          hasCourseInstance: {
+            '@type': 'CourseInstance',
+            courseMode: 'online',
+            courseWorkload: 'P4M',
+          },
+          offers: {
+            '@type': 'Offer',
+            price: '45000',
+            priceCurrency: 'INR',
+            category: 'Paid',
+          },
+        },
+        {
+          '@type': 'Course',
+          name: 'AI & Machine Learning Training',
+          description: 'Advanced AI/ML course with hands-on projects',
+          provider: {
+            '@type': 'EducationalOrganization',
+            name: SITE_CONFIG.name,
+          },
+          hasCourseInstance: {
+            '@type': 'CourseInstance',
+            courseMode: 'online',
+            courseWorkload: 'P5M',
+          },
+          offers: {
+            '@type': 'Offer',
+            price: '45000',
+            priceCurrency: 'INR',
+            category: 'Paid',
+          },
+        },
+      ],
+    },
   };
 }
 
@@ -213,7 +281,7 @@ export function generateLocalBusinessSchema(): WithContext<Record<string, unknow
     image: getImageUrl(SITE_CONFIG.defaultOgImage),
     url: SITE_CONFIG.url,
     telephone: BUSINESS_INFO.phone,
-    // priceRange: BUSINESS_INFO.priceRange,
+    priceRange: BUSINESS_INFO.priceRange,
     address: {
       '@type': 'PostalAddress',
       streetAddress: BUSINESS_INFO.address.streetAddress,
