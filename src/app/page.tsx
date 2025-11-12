@@ -2,6 +2,7 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import type { Metadata } from "next";
 import { generateSEO, generateFAQSchema } from "@/lib/seo";
+import { organizationSchema, websiteSchema } from "@/data/organizationSchema";
 
 // ============================================================================
 // ENHANCED SEO METADATA - Home Page
@@ -77,27 +78,6 @@ export default function HomePage(): React.ReactElement {
     },
   ];
 
-  const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    "name": "CDPL - Cinute Digital",
-    "url": "https://www.cinutedigital.com",
-    "logo": "https://www.cinutedigital.com/logo.png",
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+91-9876543210",
-      "contactType": "customer service",
-      "areaServed": "IN",
-      "availableLanguage": ["en", "hi"]
-    },
-    "sameAs": [
-      "https://www.facebook.com/cinutedigital",
-      "https://twitter.com/cinutedigital",
-      "https://www.linkedin.com/company/cinutedigital",
-      "https://www.youtube.com/@cinutedigital"
-    ]
-  };
-
   const faqSchema = generateFAQSchema(faqs);
 
   return (
@@ -106,6 +86,11 @@ export default function HomePage(): React.ReactElement {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         key="organization-schema"
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        key="website-schema"
       />
       <script
         type="application/ld+json"

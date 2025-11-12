@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.cinutedigital.com';
-const SITE_NAME = 'CDPL - Cinute Digital';
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.cinutedigital.com';
+export const SITE_NAME = 'CDPL - Cinute Digital';
 const TWITTER_HANDLE = '@cinutedigital';
 const DEFAULT_OG_IMAGE = '/og-image-default.jpg';
 
