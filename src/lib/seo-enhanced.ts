@@ -69,6 +69,12 @@ export function generateOrganizationSchema() {
             '@type': 'Course',
             name: 'Software Testing Training',
             description: 'Comprehensive software testing course with manual and automation testing',
+            provider: {
+              '@type': 'EducationalOrganization',
+              '@id': `${SITE_URL}/#organization`,
+              name: SITE_NAME,
+              url: SITE_URL,
+            },
           },
         },
         {
@@ -77,6 +83,12 @@ export function generateOrganizationSchema() {
             '@type': 'Course',
             name: 'Data Science Training',
             description: 'Complete data science course with Python, ML, and AI',
+            provider: {
+              '@type': 'EducationalOrganization',
+              '@id': `${SITE_URL}/#organization`,
+              name: SITE_NAME,
+              url: SITE_URL,
+            },
           },
         },
         {
@@ -85,6 +97,12 @@ export function generateOrganizationSchema() {
             '@type': 'Course',
             name: 'AI & Machine Learning Training',
             description: 'Advanced AI/ML course with hands-on projects',
+            provider: {
+              '@type': 'EducationalOrganization',
+              '@id': `${SITE_URL}/#organization`,
+              name: SITE_NAME,
+              url: SITE_URL,
+            },
           },
         },
       ],
@@ -117,6 +135,10 @@ export function generateWebsiteSchema() {
       'query-input': 'required name=search_term_string',
     },
     
+    // Breadcrumb Navigation
+    breadcrumb: {
+      '@id': `${SITE_URL}/#breadcrumb`,
+    },
   };
 }
 
