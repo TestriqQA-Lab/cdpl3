@@ -69,6 +69,23 @@ export function generateOrganizationSchema() {
             '@type': 'Course',
             name: 'Software Testing Training',
             description: 'Comprehensive software testing course with manual and automation testing',
+            provider: {
+              '@type': 'EducationalOrganization',
+              '@id': `${SITE_URL}/#organization`,
+              name: SITE_NAME,
+              url: SITE_URL,
+            },
+            offers: {
+              '@type': 'Offer',
+              price: '0', // Placeholder: Use 0 or a low value if price is not fixed or known, or a representative price
+              priceCurrency: 'INR',
+              category: 'Paid',
+            },
+            hasCourseInstance: {
+              '@type': 'CourseInstance',
+              courseMode: 'online',
+              courseWorkload: 'P3M', // Placeholder: 3 Months
+            },
           },
         },
         {
@@ -77,6 +94,23 @@ export function generateOrganizationSchema() {
             '@type': 'Course',
             name: 'Data Science Training',
             description: 'Complete data science course with Python, ML, and AI',
+            provider: {
+              '@type': 'EducationalOrganization',
+              '@id': `${SITE_URL}/#organization`,
+              name: SITE_NAME,
+              url: SITE_URL,
+            },
+            offers: {
+              '@type': 'Offer',
+              price: '0', // Placeholder: Use 0 or a low value if price is not fixed or known, or a representative price
+              priceCurrency: 'INR',
+              category: 'Paid',
+            },
+            hasCourseInstance: {
+              '@type': 'CourseInstance',
+              courseMode: 'online',
+              courseWorkload: 'P4M', // Placeholder: 4 Months
+            },
           },
         },
         {
@@ -85,6 +119,23 @@ export function generateOrganizationSchema() {
             '@type': 'Course',
             name: 'AI & Machine Learning Training',
             description: 'Advanced AI/ML course with hands-on projects',
+            provider: {
+              '@type': 'EducationalOrganization',
+              '@id': `${SITE_URL}/#organization`,
+              name: SITE_NAME,
+              url: SITE_URL,
+            },
+            offers: {
+              '@type': 'Offer',
+              price: '0', // Placeholder: Use 0 or a low value if price is not fixed or known, or a representative price
+              priceCurrency: 'INR',
+              category: 'Paid',
+            },
+            hasCourseInstance: {
+              '@type': 'CourseInstance',
+              courseMode: 'online',
+              courseWorkload: 'P5M', // Placeholder: 5 Months
+            },
           },
         },
       ],
@@ -116,11 +167,7 @@ export function generateWebsiteSchema() {
       },
       'query-input': 'required name=search_term_string',
     },
-    
-    // Breadcrumb Navigation
-    breadcrumb: {
-      '@id': `${SITE_URL}/#breadcrumb`,
-    },
+  
   };
 }
 
