@@ -26,12 +26,16 @@ import { isValidPhoneNumber } from 'libphonenumber-js';
 // Import BrochureDownloadModal
 import BrochureDownloadModal from './BrochureDownloadModal';
 
+// Import YouTubeVideoModal
+import YouTubeVideoModal from './YouTubeVideoModal';
+
 // Component for the list of features/stats (for mobile)
 interface MobileFeatureListProps {
   onOpenBrochure: () => void;
+  onOpenVideo: () => void;
 }
 
-const MobileFeatureList: React.FC<MobileFeatureListProps> = ({ onOpenBrochure }) => (
+const MobileFeatureList: React.FC<MobileFeatureListProps> = ({ onOpenBrochure, onOpenVideo }) => (
   <div className="mt-7 space-y-4">
     {/* List of features/stats */}
     <div className="grid grid-cols-2 gap-3 text-sm text-slate-700">
@@ -90,13 +94,13 @@ const MobileFeatureList: React.FC<MobileFeatureListProps> = ({ onOpenBrochure })
         <Eye className="h-5 w-5" />
         View Placement Stories
       </Link>
-      <Link
-        href="#video"
+      <button
+        onClick={onOpenVideo}
         className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white text-sm sm:text-base font-semibold rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 w-full sm:w-auto"
       >
         <Play className="h-5 w-5" />
         Watch CDPL
-      </Link>
+      </button>
     </div>
   </div>
 );
@@ -120,6 +124,12 @@ const HomeHeroSection: React.FC = () => {
 
   // Brochure modal state
   const [isBrochureModalOpen, setIsBrochureModalOpen] = useState(false);
+
+  // Video modal state
+  const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+  
+  // YouTube video URL - UPDATE THIS WITH YOUR VIDEO URL
+  const videoUrl = 'https://www.youtube.com/watch?v=8kB2wESj1n8'; // Replace YOUR_VIDEO_ID with actual video ID
 
   // Validation functions
   const validateFullName = (name: string) => {
@@ -403,13 +413,13 @@ const HomeHeroSection: React.FC = () => {
         </Link>
 
         {/* Tertiary CTA - Watch CDPL */}
-        <Link
-          href="#video"
+        <button
+          onClick={() => setIsVideoModalOpen(true)}
           className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white text-sm sm:text-base font-semibold rounded-lg shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
         >
           <Play className="h-5 w-5" />
           Watch CDPL
-        </Link>
+        </button>
       </motion.div>
     </>
   );
@@ -695,7 +705,10 @@ const HomeHeroSection: React.FC = () => {
             {LeadForm}
 
             {/* 5. Mobile Feature List (The long list of stats/CTAs) */}
-            <MobileFeatureList onOpenBrochure={() => setIsBrochureModalOpen(true)} />
+            <MobileFeatureList 
+              onOpenBrochure={() => setIsBrochureModalOpen(true)}
+              onOpenVideo={() => setIsVideoModalOpen(true)}
+            />
           </div>
 
           {/* --- Desktop/Laptop Layout (hidden lg:block) --- */}
@@ -722,6 +735,13 @@ const HomeHeroSection: React.FC = () => {
       <BrochureDownloadModal
         isOpen={isBrochureModalOpen}
         onClose={() => setIsBrochureModalOpen(false)}
+      />
+
+      {/* YouTube Video Modal */}
+      <YouTubeVideoModal
+        isOpen={isVideoModalOpen}
+        onClose={() => setIsVideoModalOpen(false)}
+        videoUrl={videoUrl}
       />
     </>
   );
