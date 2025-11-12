@@ -2,7 +2,6 @@ import React from 'react';
 import dynamic from 'next/dynamic';
 import type { Metadata } from "next";
 import { generateSEO, generateFAQSchema } from "@/lib/seo";
-import { organizationSchema, websiteSchema } from "@/data/organizationSchema";
 
 // ============================================================================
 // ENHANCED SEO METADATA - Home Page
@@ -82,16 +81,6 @@ export default function HomePage(): React.ReactElement {
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
-        key="organization-schema"
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-        key="website-schema"
-      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
