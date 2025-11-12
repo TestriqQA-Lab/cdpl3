@@ -126,13 +126,13 @@ export function generateOrganizationSchema(): WithContext<Record<string, unknown
     foundingDate: BUSINESS_INFO.foundedYear,
     
     // Number of Employees
-    numberOfEmployees: {
-      '@type': 'QuantitativeValue',
-      value: BUSINESS_INFO.numberOfEmployees,
-    },
+    // numberOfEmployees: {
+    //   '@type': 'QuantitativeValue',
+    //   value: BUSINESS_INFO.numberOfEmployees,
+    // },
     
     // Price Range
-    priceRange: BUSINESS_INFO.priceRange,
+    // priceRange: BUSINESS_INFO.priceRange,
     
     // Opening Hours
     openingHoursSpecification: BUSINESS_INFO.openingHours.map((hours) => {
@@ -213,7 +213,7 @@ export function generateLocalBusinessSchema(): WithContext<Record<string, unknow
     image: getImageUrl(SITE_CONFIG.defaultOgImage),
     url: SITE_CONFIG.url,
     telephone: BUSINESS_INFO.phone,
-    priceRange: BUSINESS_INFO.priceRange,
+    // priceRange: BUSINESS_INFO.priceRange,
     address: {
       '@type': 'PostalAddress',
       streetAddress: BUSINESS_INFO.address.streetAddress,
