@@ -125,11 +125,11 @@ export function generateOrganizationSchema(): WithContext<Record<string, unknown
     // Founding Date
     foundingDate: BUSINESS_INFO.foundedYear,
     
-    // Number of Employees
-    numberOfEmployees: {
-      '@type': 'QuantitativeValue',
-      value: BUSINESS_INFO.numberOfEmployees,
-    },
+    // // Number of Employees
+    // numberOfEmployees: {
+    //   '@type': 'QuantitativeValue',
+    //   value: BUSINESS_INFO.numberOfEmployees,
+    // },
     
     // // Price Range
     // priceRange: BUSINESS_INFO.priceRange,
