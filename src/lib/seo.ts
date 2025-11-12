@@ -106,17 +106,21 @@ export function generateCourseSchema(course: {
   duration?: string;
   image?: string;
 }) {
+  // The 'provider' field is required for rich results eligibility, even though Google Search Console marks it as 'optional'.
+  // We will include it unconditionally to resolve the non-critical issue.
+  const providerSchema = {
+    '@type': 'EducationalOrganization',
+    name: SITE_NAME,
+    url: SITE_URL,
+  };
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Course',
     name: course.name,
     description: course.description,
     url: course.url,
-    provider: {
-      '@type': 'EducationalOrganization',
-      name: SITE_NAME,
-      url: SITE_URL,
-    },
+    provider: providerSchema,
     ...(course.image && {
       image: course.image.startsWith('http') ? course.image : `${SITE_URL}${course.image}`,
     }),
