@@ -1,30 +1,32 @@
+/**
+ * ============================================================================
+ * HOME PAGE - ENHANCED SEO & SCHEMA MARKUP
+ * ============================================================================
+ * 
+ * This file implements the comprehensive SEO strategy for the home page,
+ * including multiple rich schema types for maximum search visibility.
+ * 
+ * @version 2.0.0
+ * @updated 2025-11-12
+ */
+
 import React from 'react';
 import dynamic from 'next/dynamic';
 import type { Metadata } from "next";
-import { generateSEO, generateFAQSchema } from "@/lib/seo";
+import { generateMetadata } from "@/lib/metadata-generator";
+import {
+  generateLocalBusinessSchema,
+  generateItemListSchema,
+  generateFAQSchema,
+  generateVideoSchema,
+} from "@/lib/schema-generators";
+import { FEATURED_COURSES } from "@/lib/seo-config";
+import JsonLd from "@/components/JsonLd";
 
 // ============================================================================
-// ENHANCED SEO METADATA - Home Page
+// DYNAMIC IMPORTS (for performance)
 // ============================================================================
-export const metadata: Metadata = generateSEO({
-  title: "CDPL - Best Software Testing, Data Science & AI/ML Courses in India",
-  description: "Join CDPL for industry-led training in Software Testing, Data Science, and AI/ML. Get 100% placement support, expert mentorship, and hands-on projects. Start your high-paying tech career today!",
-  keywords: [
-    "software testing course",
-    "data science course",
-    "AI ML course",
-    "CDPL",
-    "Cinute Digital",
-    "best tech training institute",
-    "100% placement support",
-    "career change",
-    "IT training India"
-  ],
-  url: '/',
-  type: 'website',
-});
 
-// Import home page components with proper naming
 const HomeHeroSection = dynamic(() => import('@/components/home/HomeHeroSection'), { ssr: true });
 const HomeTrustBarSection = dynamic(() => import('@/components/home/HomeTrustBarSection'), { ssr: true });
 const HomeFeaturedCoursesSection = dynamic(() => import('@/components/home/HomeFeaturedCoursesSection'), { ssr: true });
@@ -36,12 +38,50 @@ const HomeLatestBlogSection = dynamic(() => import('@/components/home/HomeLatest
 const HomeFAQSection = dynamic(() => import('@/components/home/HomeFAQSection'), { ssr: true });
 const HomeFinalCTASection = dynamic(() => import('@/components/home/HomeFinalCTASection'), { ssr: true });
 
-/**
- * CDPL Home Page - Modern, SEO-Optimized, Lead Generation Focused
- * 
- * @returns {React.ReactElement} Complete home page
- */
+// ============================================================================
+// HOME PAGE METADATA
+// ============================================================================
+
+export const metadata: Metadata = generateMetadata({
+  title: "CDPL - Best Software Testing, Data Science & AI/ML Courses in India",
+  description: "Join CDPL for industry-led training in Software Testing, Data Science, and AI/ML. Get 100% placement support, expert mentorship, and hands-on projects. Start your high-paying tech career today!",
+  keywords: [
+    "software testing course",
+    "data science course",
+    "AI ML course",
+    "CDPL",
+    "Cinute Digital",
+    "best tech training institute",
+    "100% placement support",
+    "career change",
+    "IT training India",
+    "online courses",
+    "job guarantee",
+  ],
+  url: '/',
+});
+
+// ============================================================================
+// HOME PAGE COMPONENT
+// ============================================================================
+
 export default function HomePage(): React.ReactElement {
+  // ========================================
+  // SCHEMA DATA
+  // ========================================
+
+  // Local Business Schema
+  const localBusinessSchema = generateLocalBusinessSchema();
+
+  // ItemList Schema for Featured Courses
+  const featuredCoursesForSchema = FEATURED_COURSES.map(course => ({
+    name: course.name,
+    url: `/${course.slug}`,
+    description: course.description,
+  }));
+  const itemListSchema = generateItemListSchema(featuredCoursesForSchema, 'Featured Courses');
+
+  // FAQ Schema
   const faqs = [
     {
       question: 'What courses does CDPL offer?',
@@ -59,34 +99,33 @@ export default function HomePage(): React.ReactElement {
       question: 'Are the classes online or offline?',
       answer: 'We offer both online and offline training options. Our live online classes are interactive with real-time doubt resolution, just like classroom training. You can also attend our classroom sessions at our Pune center.',
     },
-    {
-      question: 'Is prior experience required?',
-      answer: 'No prior experience is required for most of our beginner-level courses. We start from fundamentals and gradually move to advanced topics. Our trainers ensure everyone understands the concepts before moving forward.',
-    },
-    {
-      question: 'What certifications will I receive?',
-      answer: 'You will receive a course completion certificate from CDPL. Additionally, we prepare you for globally recognized certifications like ISTQB (for testing courses), AWS (for cloud courses), and other industry-standard certifications relevant to your course.',
-    },
-    {
-      question: 'How experienced are the trainers?',
-      answer: 'All our trainers are industry professionals with 10+ years of hands-on experience at top companies like Google, Microsoft, Amazon, and leading Indian IT firms. They bring real-world expertise and practical insights to every session.',
-    },
-    {
-      question: 'What is the batch size?',
-      answer: 'We maintain small batch sizes of 15-20 students to ensure personalized attention and better learning outcomes. This allows our trainers to focus on each student\'s progress and provide individual guidance.',
-    },
   ];
-
   const faqSchema = generateFAQSchema(faqs);
+
+  // Video Schema (assuming a video exists on the page)
+  const videoSchema = generateVideoSchema({
+    name: 'Why Choose CDPL for Your Tech Career?',
+    description: 'Discover how CDPL can transform your career with industry-ready skills, expert mentorship, and 100% placement support.',
+    thumbnailUrl: '/video-thumbnail.jpg', // TODO: Update with actual thumbnail
+    uploadDate: '2025-10-20T08:00:00+05:30',
+    duration: 'PT2M30S', // 2 minutes 30 seconds
+    embedUrl: 'https://www.youtube.com/embed/your-video-id', // TODO: Update with actual video ID
+  });
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        key="faq-schema"
-      />
+      {/* ========================================
+          JSON-LD SCHEMA INJECTION
+          ======================================== */}
+      <JsonLd id="local-business-schema" schema={localBusinessSchema} />
+      <JsonLd id="item-list-schema" schema={itemListSchema} />
+      <JsonLd id="faq-schema" schema={faqSchema} />
+      <JsonLd id="video-schema" schema={videoSchema} />
+
       <main className="relative bg-white">
+        {/* ========================================
+            PAGE CONTENT
+            ======================================== */}
         <HomeHeroSection />
         <HomeTrustBarSection />
         <HomeFeaturedCoursesSection />
