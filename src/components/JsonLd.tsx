@@ -1,0 +1,38 @@
+/**
+ * ============================================================================
+ * JSON-LD SCHEMA INJECTION COMPONENT
+ * ============================================================================
+ * 
+ * This component safely injects JSON-LD structured data into the <head>
+ * of a page. It should be used to render the output of the schema generators.
+ * 
+ * @version 2.0.0
+ * @updated 2025-11-12
+ */
+
+import React from 'react';
+
+interface JsonLdProps {
+  schema: object;
+  id: string;
+}
+
+/**
+ * A React component to inject JSON-LD schema into the page head.
+ * 
+ * @param {JsonLdProps} props - The component props.
+ * @param {object} props.schema - The JSON-LD schema object.
+ * @param {string} props.id - A unique key for the script tag.
+ * @returns {React.ReactElement} A script tag with the JSON-LD schema.
+ */
+const JsonLd: React.FC<JsonLdProps> = ({ schema, id }) => {
+  return (
+    <script
+      type="application/ld+json"
+      id={id}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema, null, 2) }}
+    />
+  );
+};
+
+export default JsonLd;
