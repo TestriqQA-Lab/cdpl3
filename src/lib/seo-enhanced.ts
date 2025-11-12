@@ -117,10 +117,6 @@ export function generateWebsiteSchema() {
       'query-input': 'required name=search_term_string',
     },
     
-    // Breadcrumb Navigation
-    breadcrumb: {
-      '@id': `${SITE_URL}/#breadcrumb`,
-    },
   };
 }
 
