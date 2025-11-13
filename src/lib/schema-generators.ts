@@ -491,15 +491,19 @@ export function generateItemListSchema(
       '@type': 'ListItem',
       position: index + 1,
       item: {
-        '@type': 'Course',
+        '@type': 'Product',
         name: item.name,
         url: getFullUrl(item.url),
         ...(item.description && { description: item.description }),
         ...(item.image && { image: getImageUrl(item.image) }),
-        provider: {
-          '@type': 'EducationalOrganization',
-          '@id': getOrganizationId(),
+        brand: {
+          '@type': 'Brand',
           name: SITE_CONFIG.name,
+        },
+        offers: {
+          '@type': 'Offer',
+          availability: 'https://schema.org/InStock',
+          priceCurrency: 'INR',
         },
       },
     })),
