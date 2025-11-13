@@ -168,60 +168,93 @@ export function generateOrganizationSchema(): WithContext<Record<string, unknown
         {
           '@type': 'Course',
           name: 'Software Testing Training',
-          description: 'Comprehensive software testing course with manual and automation testing',
+          description: 'Comprehensive software testing course with manual and automation testing. Learn test case design, defect management, automation frameworks, and API testing with hands-on projects.',
+          url: `${SITE_CONFIG.url}/manual-testing-course`,
           provider: {
             '@type': 'EducationalOrganization',
+            '@id': getOrganizationId(),
             name: SITE_CONFIG.name,
+            url: SITE_CONFIG.url,
           },
-          hasCourseInstance: {
-            '@type': 'CourseInstance',
-            courseMode: 'online',
-            courseWorkload: 'P3M',
-          },
+          hasCourseInstance: [
+            {
+              '@type': 'CourseInstance',
+              courseMode: ['online', 'onsite'],
+              courseWorkload: 'P3M',
+              instructor: {
+                '@type': 'Person',
+                name: 'Expert QA Mentors',
+              },
+            },
+          ],
           offers: {
             '@type': 'Offer',
             price: '25000',
             priceCurrency: 'INR',
+            availability: 'https://schema.org/InStock',
+            url: `${SITE_CONFIG.url}/manual-testing-course`,
             category: 'Paid',
           },
         },
         {
           '@type': 'Course',
           name: 'Data Science Training',
-          description: 'Complete data science course with Python, ML, and AI',
+          description: 'Complete data science course with Python, ML, and AI. Master data analysis, visualization, statistical modeling, and machine learning with real-world projects.',
+          url: `${SITE_CONFIG.url}/data-science-course`,
           provider: {
             '@type': 'EducationalOrganization',
+            '@id': getOrganizationId(),
             name: SITE_CONFIG.name,
+            url: SITE_CONFIG.url,
           },
-          hasCourseInstance: {
-            '@type': 'CourseInstance',
-            courseMode: 'online',
-            courseWorkload: 'P4M',
-          },
+          hasCourseInstance: [
+            {
+              '@type': 'CourseInstance',
+              courseMode: ['online', 'onsite'],
+              courseWorkload: 'P4M',
+              instructor: {
+                '@type': 'Person',
+                name: 'Expert Data Scientists',
+              },
+            },
+          ],
           offers: {
             '@type': 'Offer',
             price: '45000',
             priceCurrency: 'INR',
+            availability: 'https://schema.org/InStock',
+            url: `${SITE_CONFIG.url}/data-science-course`,
             category: 'Paid',
           },
         },
         {
           '@type': 'Course',
           name: 'AI & Machine Learning Training',
-          description: 'Advanced AI/ML course with hands-on projects',
+          description: 'Advanced AI/ML course with hands-on projects. Learn deep learning, neural networks, NLP, computer vision, and generative AI with industry applications.',
+          url: `${SITE_CONFIG.url}/machine-learning-course`,
           provider: {
             '@type': 'EducationalOrganization',
+            '@id': getOrganizationId(),
             name: SITE_CONFIG.name,
+            url: SITE_CONFIG.url,
           },
-          hasCourseInstance: {
-            '@type': 'CourseInstance',
-            courseMode: 'online',
-            courseWorkload: 'P5M',
-          },
+          hasCourseInstance: [
+            {
+              '@type': 'CourseInstance',
+              courseMode: ['online', 'onsite'],
+              courseWorkload: 'P5M',
+              instructor: {
+                '@type': 'Person',
+                name: 'Expert AI/ML Engineers',
+              },
+            },
+          ],
           offers: {
             '@type': 'Offer',
             price: '45000',
             priceCurrency: 'INR',
+            availability: 'https://schema.org/InStock',
+            url: `${SITE_CONFIG.url}/machine-learning-course`,
             category: 'Paid',
           },
         },
