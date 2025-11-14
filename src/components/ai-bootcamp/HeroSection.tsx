@@ -132,42 +132,6 @@ function LeadForm({ className = "" }: { className?: string }) {
 }
 
 export default function HeroSection() {
-    const courseJsonLd = {
-        "@context": "https://schema.org",
-        "@type": "Course",
-        name: "Digital Marketing with AI Bootcamp",
-        description:
-            "Intensive 30-hour Digital Marketing with AI bootcamp covering SEO, SEM, Social Media Marketing, Performance Marketing, Marketing Automation, AI tools for content & ads, and real-world campaigns.",
-        provider: {
-            "@type": "Organization",
-            name: "Your Academy",
-            sameAs: "https://www.youracademy.example",
-        },
-        timeRequired: "PT30H",
-        educationalLevel: "Beginner to Intermediate",
-        keywords:
-            "digital marketing with AI, AI marketing course, digital marketing course in Mumbai, performance marketing, SEO, SEM, social media marketing, marketing automation, AI tools for marketing, high-income digital marketing skill",
-    };
-
-    const breadcrumbJsonLd = {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: [
-            {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: "https://www.yoursite.example/",
-            },
-            {
-                "@type": "ListItem",
-                position: 2,
-                name: "Digital Marketing with AI Bootcamp",
-                item: "https://www.yoursite.example/courses/digital-marketing-with-ai",
-            },
-        ],
-    };
-
     const breadcrumbs = [
         { label: "Home", href: "/" },
         { label: "Digital Marketing with AI Bootcamp", href: "/digital-marketing-with-ai" },
@@ -182,17 +146,6 @@ export default function HeroSection() {
                 <div className="animate-blob animation-delay-4000 absolute -bottom-8 left-20 h-72 w-72 rounded-full bg-pink-200 opacity-20 mix-blend-multiply blur-3xl" />
             </div>
 
-            {/* JSON-LD for SEO */}
-            <script
-                type="application/ld+json"
-                
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
-            />
-            <script
-                type="application/ld+json"
-                
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-            />
 
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-10 pb-12 md:pt-6 md:pb-16">
                 {/* Breadcrumbs */}

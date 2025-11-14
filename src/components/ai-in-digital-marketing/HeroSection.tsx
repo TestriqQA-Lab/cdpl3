@@ -127,47 +127,6 @@ function LeadForm({ className = "" }: { className?: string }) {
 export default function HeroSection() {
   const { basic } = courseData;
 
-  const courseJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Course",
-    name: "AI in Digital Marketing – Advanced Certification Program",
-    description: basic.description,
-    provider: {
-      "@type": "Organization",
-      name: "Cinute Digital",
-      sameAs: "https://www.cinutedigital.com",
-    },
-    timeRequired: basic.duration,
-    educationalLevel: "Beginner to Advanced",
-    keywords:
-      "AI in digital marketing, AI marketing course, digital marketing with AI tools, marketing automation, performance marketing, AI for lead generation, SEO with AI, Meta ads, Google ads, Mumbai digital marketing institute",
-  };
-
-  const breadcrumbJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: "https://www.cinutedigital.com/",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Courses",
-        item: "https://www.cinutedigital.com/courses",
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: "AI in Digital Marketing",
-        item: "https://www.cinutedigital.com/courses/ai-in-digital-marketing",
-      },
-    ],
-  };
-
   const breadcrumbs = [
     { label: "Home", href: "/" },
     { label: "AI in Digital Marketing", href: "/ai-in-digital-marketing" },
@@ -182,17 +141,7 @@ export default function HeroSection() {
         <div className="animate-blob animation-delay-4000 absolute -bottom-8 left-20 h-72 w-72 rounded-full bg-blue-200 opacity-20 mix-blend-multiply blur-3xl" />
       </div>
 
-      {/* JSON-LD for SEO */}
-      <script
-        type="application/ld+json"
-        
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-      />
+    
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-12 md:pb-16">
         {/* Breadcrumbs */}
