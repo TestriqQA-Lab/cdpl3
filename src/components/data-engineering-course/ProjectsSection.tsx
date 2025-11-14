@@ -90,22 +90,6 @@ export default function ProjectsSection() {
     const seoKeywords =
         "big data engineering projects, kafka spark streaming project, data lake delta lakehouse, kinesis emr hive analytics, airflow etl dbt pipeline, snowflake bigquery warehouse, data governance privacy compliance";
 
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        name: "Big Data Engineering — Projects You’ll Build",
-        itemListElement: PROJECTS.map((p, i) => ({
-            "@type": "ListItem",
-            position: i + 1,
-            item: {
-                "@type": "CreativeWork",
-                name: p.title,
-                description: p.desc,
-                keywords:
-                    "big data, streaming, lakehouse, etl, airflow, warehouse, governance, compliance",
-            },
-        })),
-    };
 
     return (
         <section
@@ -245,11 +229,6 @@ export default function ProjectsSection() {
                 </div>
             </div>
 
-            {/* JSON-LD structured data */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
         </section>
     );
 }

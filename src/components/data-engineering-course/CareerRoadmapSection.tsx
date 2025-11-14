@@ -76,23 +76,7 @@ const STEPS: Step[] = [
 ];
 
 export default function CareerRoadmapSection() {
-  // SEO structured data (HowTo)
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "HowTo",
-    name: "Big Data Engineering Career Roadmap",
-    description:
-      "Step-by-step roadmap to become a job-ready Big Data Engineer with portfolio pipelines, cloud deployments, and interview prep.",
-    totalTime: "P3M",
-    step: STEPS.map((s) => ({
-      "@type": "HowToStep",
-      position: s.n,
-      name: s.title,
-      text: s.desc,
-    })),
-    keywords:
-      "big data engineer roadmap, spark kafka airflow portfolio, databricks emr dataproc, data engineering interviews India, lakehouse pipeline",
-  };
+
 
   const subtitle =
     "Follow these four proven steps to progress from learner to job-ready Big Data Engineer with production-style projects recruiters trust.";
@@ -226,11 +210,6 @@ export default function CareerRoadmapSection() {
         </div>
       </div>
 
-      {/* JSON-LD for search engines */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
     </section>
   );
 }

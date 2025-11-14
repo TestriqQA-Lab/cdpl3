@@ -77,16 +77,6 @@ export default function FaqSection() {
   const seoKeywords =
     "big data engineering faq, spark kafka airflow course questions, data engineer training india, placement assistance analytics, python java big data program, lakehouse delta iceberg, streaming pipelines";
 
-  // JSON-LD (FAQPage) for rich results
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: FAQS.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
 
   return (
     <section
@@ -193,11 +183,6 @@ export default function FaqSection() {
         </div>
       </div>
 
-      {/* Structured data for SEO */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
     </section>
   );
 }

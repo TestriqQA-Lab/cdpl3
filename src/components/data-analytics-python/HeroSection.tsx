@@ -124,47 +124,7 @@ function LeadForm({ className = "" }: { className?: string }) {
 }
 
 export default function HeroSection() {
-    const courseJsonLd = {
-        "@context": "https://schema.org",
-        "@type": "Course",
-        name: "Advanced Data Analytics with Python Libraries",
-        description:
-            "Intensive 20-hour data analytics course covering Python, Pandas, NumPy, Matplotlib, Seaborn, Plotly, Streamlit, dashboards, and real-world projects.",
-        provider: {
-            "@type": "Organization",
-            name: "Your Academy",
-            sameAs: "https://www.youracademy.example",
-        },
-        timeRequired: "PT20H",
-        educationalLevel: "Beginner to Intermediate",
-        keywords:
-            "data analytics course, python data analysis, pandas, numpy, matplotlib, seaborn, plotly, streamlit, dashboards, EDA, data visualization, analytics training in Hyderabad, job-ready data analytics",
-    };
 
-    const breadcrumbJsonLd = {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: [
-            {
-                "@type": "ListItem",
-                position: 1,
-                name: "Home",
-                item: "https://www.yoursite.example/",
-            },
-            {
-                "@type": "ListItem",
-                position: 2,
-                name: "Courses",
-                item: "https://www.yoursite.example/courses",
-            },
-            {
-                "@type": "ListItem",
-                position: 3,
-                name: "Advanced Data Analytics with Python",
-                item: "https://www.yoursite.example/courses/advanced-data-analytics-python",
-            },
-        ],
-    };
 
     const breadcrumbs = [
         { label: "Home", href: "/" },
@@ -179,18 +139,6 @@ export default function HeroSection() {
                 <div className="animate-blob animation-delay-2000 absolute left-10 top-40 h-72 w-72 rounded-full bg-blue-200 opacity-20 mix-blend-multiply blur-3xl" />
                 <div className="animate-blob animation-delay-4000 absolute -bottom-8 left-20 h-72 w-72 rounded-full bg-indigo-200 opacity-20 mix-blend-multiply blur-3xl" />
             </div>
-
-            {/* JSON-LD for SEO */}
-            <script
-                type="application/ld+json"
-                // @"@ts-expect-error
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
-            />
-            <script
-                type="application/ld+json"
-                // @"@ts-expect-error
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-            />
 
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-10 pb-12 md:pt-6 md:pb-16">
                 {/* Breadcrumbs */}

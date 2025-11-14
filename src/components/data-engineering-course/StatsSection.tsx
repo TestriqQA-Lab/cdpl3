@@ -93,23 +93,7 @@ export default function StatsSection() {
   const seoKeywords =
     "big data engineering course, apache spark training, kafka streaming pipelines, hadoop ecosystem, airflow orchestration, data engineer placement assistance, sql data warehousing, real time data processing, cloud data engineering";
 
-  // JSON-LD (ItemList) for richer snippets
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "CDPL Big Data Engineering — Program Highlights",
-    itemListElement: STATS.map((s, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      item: {
-        "@type": "Thing",
-        name: s.label,
-        description: `${s.value} — ${s.label}${s.hint ? ` (${s.hint})` : ""}`,
-      },
-    })),
-    keywords:
-      "big data engineering highlights, spark kafka hadoop course, data engineer training benefits, job ready data pipelines",
-  };
+
 
   return (
     <section
@@ -211,11 +195,6 @@ export default function StatsSection() {
         </div>
       </div>
 
-      {/* JSON-LD structured data */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
     </section>
   );
 }

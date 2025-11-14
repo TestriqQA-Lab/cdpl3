@@ -56,19 +56,6 @@ export default function CurriculumSection() {
   const keywords =
     "big data engineering curriculum, Hadoop Spark Kafka course, Databricks EMR Dataflow Synapse, Delta Lake lakehouse, Airflow orchestration, data engineer syllabus";
 
-  // JSON-LD (ItemList) for modules
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Big Data Engineering Curriculum",
-    itemListElement: MODULES.map((m, idx) => ({
-      "@type": "ListItem",
-      position: idx + 1,
-      item: { "@type": "Course", name: m.title, description: m.outcome },
-    })),
-    numberOfItems: MODULES.length,
-    keywords,
-  };
 
   return (
     <section
@@ -197,11 +184,6 @@ export default function CurriculumSection() {
         </p>
       </div>
 
-      {/* JSON-LD for search engines */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
     </section>
   );
 }

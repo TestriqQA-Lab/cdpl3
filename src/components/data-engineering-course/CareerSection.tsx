@@ -79,19 +79,6 @@ export default function CareerSection() {
   const keywords =
     "big data engineer jobs India, Hadoop Spark Kafka hiring companies, data engineering roles, EMR Databricks Snowflake, streaming pipelines careers";
 
-  // JSON-LD (ItemList of organizations)
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Companies hiring Big Data Engineers in India",
-    itemListElement: COMPANIES.map((c, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      item: { "@type": "Organization", name: c.name, sameAs: c.href || "" },
-    })),
-    numberOfItems: COMPANIES.length,
-    keywords,
-  };
 
   return (
     <section id="careers" aria-labelledby="careers-heading" className="relative overflow-hidden py-4 md:py-10 bg-white">
@@ -183,11 +170,6 @@ export default function CareerSection() {
         </p>
       </div>
 
-      {/* JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
     </section>
   );
 }

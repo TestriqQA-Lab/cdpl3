@@ -73,23 +73,6 @@ export default function WhoShouldEnroll() {
   const seoKeywords =
     "who should enroll big data course, data engineer program audience, spark kafka airflow training, lakehouse delta iceberg, data platform careers, freshers big data engineering, it professionals data engineering";
 
-  // JSON-LD Audience list for richer snippets
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Who Should Enroll — Big Data Engineering Program",
-    itemListElement: PERSONAS.map((p, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      item: {
-        "@type": "Audience",
-        audienceType: p.title,
-        description: p.blurb,
-        keywords:
-          "big data audience, software engineers, data analysts, etl developers, sysadmins, fresh graduates",
-      },
-    })),
-  };
 
   return (
     <section
@@ -214,11 +197,6 @@ export default function WhoShouldEnroll() {
         </div>
       </div>
 
-      {/* JSON-LD for search engines */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
     </section>
   );
 }

@@ -7,19 +7,7 @@ import LeadForm from "../CourseLeadForm";
 import { ChevronRight, Home } from "lucide-react";
 
 export default function HeroSection() {
-    // JSON-LD for SEO (Course)
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "Course",
-        name: "Master Program in Big Data Engineering",
-        description:
-            "Industry-ready Big Data Engineering training covering Hadoop ecosystem, Spark (Core/SQL/Streaming), Kafka, Airflow, Hive, HDFS, NoSQL, data modeling, and cloud deployment (AWS/Azure). Includes live projects, mentor-led labs, and placement assistance.",
-        provider: { "@type": "Organization", name: "Cinute Digital Pvt. Ltd. (CDPL)" },
-        educationalCredentialAwarded: "CDPL Verified Certificate (QR-enabled)",
-        timeRequired: "PT95H",
-        keywords:
-            "big data engineering course, Apache Spark training, Hadoop HDFS Hive, Kafka streaming, Airflow data pipelines, data engineer jobs India, AWS Azure Databricks",
-    };
+
 
     const breadcrumbs = [
         { label: "Home", href: "/" },
@@ -177,11 +165,6 @@ export default function HeroSection() {
                 </div>
             </div>
 
-            {/* JSON-LD */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-            />
         </section>
     );
 }

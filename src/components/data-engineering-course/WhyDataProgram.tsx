@@ -1,7 +1,6 @@
 // components/sections/WhyProgramName.tsx
 "use client";
 
-import { useMemo } from "react";
 import {
     Server,
     Activity,
@@ -17,36 +16,7 @@ import {
 import Link from "next/link";
 
 export default function WhyDataProgram() {
-    // SEO: Course schema
-    const courseJsonLd = useMemo(
-        () =>
-            JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "Course",
-                name: "Big Data Engineering — Scalable Data Infrastructure",
-                description:
-                    "Hands-on Big Data Engineering program covering Kafka, Spark, Hadoop, data lakes/warehouses, streaming pipelines, orchestration, and cloud deployments (AWS/GCP/Azure). Build fault-tolerant, high-performance data platforms.",
-                provider: {
-                    "@type": "Organization",
-                    name: "Cinute Digital Pvt. Ltd.",
-                    sameAs: "https://example.com",
-                },
-                educationalCredentialAwarded: "Certificate of Completion",
-                timeRequired: "PT95H",
-                inLanguage: "en",
-                keywords: [
-                    "big data engineering course",
-                    "spark kafka hadoop training",
-                    "data lake data warehouse",
-                    "stream processing",
-                    "airflow orchestration",
-                    "cloud data engineer",
-                    "etl pipelines",
-                    "batch and real-time analytics",
-                ],
-            }),
-        []
-    );
+
 
     const featureChips = [
         { label: "95 Hours", color: "bg-indigo-600 text-white" },
@@ -260,8 +230,6 @@ export default function WhyDataProgram() {
                 </div>
             </div>
 
-            {/* JSON-LD for SEO */}
-            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: courseJsonLd }} />
         </section>
     );
 }

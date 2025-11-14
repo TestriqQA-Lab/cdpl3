@@ -134,93 +134,6 @@ export default function HeroSection() {
         tagline: "#1 MUMBAI's PREMIUM TRAINING INSTITUTE",
     };
 
-    /** ---- JSON-LD: Course ---- */
-    const courseJsonLd = {
-        "@context": "https://schema.org",
-        "@type": "Course",
-        name: courseInfo.title,
-        description:
-            "Hands-on Advanced Excel training in Mumbai focused on data analytics, dashboarding, and visualization using PivotTables, Power Query, Power Pivot, DAX basics, and automation techniques.",
-        provider: {
-            "@type": "Organization",
-            name: courseInfo.institute,
-            url: "https://www.example.com",
-        },
-        timeRequired: "PT20H",
-        educationalLevel: "Beginner to Intermediate",
-        keywords:
-            "Advanced Excel course Mumbai, Excel data analytics training, Excel dashboards course, PivotTables training India, Power Query certification, Power Pivot DAX basics, Excel business analytics, Excel reporting automation, Excel charts & visualization, Excel for data analysis, best Excel course in Mumbai",
-        areaServed: ["Mumbai", "Maharashtra", "India"],
-        inLanguage: "en",
-        offers: {
-            "@type": "Offer",
-            availability: "https://schema.org/InStock",
-            priceCurrency: "INR",
-            price: "0",
-            url: "https://www.example.com/courses/advanced-excel",
-            eligibleRegion: "IN",
-        },
-    };
-
-    /** ---- JSON-LD: Breadcrumbs ---- */
-    const breadcrumbJsonLd = {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        itemListElement: [
-            { "@type": "ListItem", position: 1, name: "Home", item: "https://www.example.com/" },
-            { "@type": "ListItem", position: 2, name: "Courses", item: "https://www.example.com/courses" },
-            {
-                "@type": "ListItem",
-                position: 3,
-                name: "Advanced Excel for Data Analytics & Visualization",
-                item: "https://www.example.com/courses/advanced-excel",
-            },
-        ],
-    };
-
-    /** ---- JSON-LD: FAQ (high-intent queries) ---- */
-    const faqJsonLd = {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        mainEntity: [
-            {
-                "@type": "Question",
-                name: "Who should take this Advanced Excel course in Mumbai?",
-                acceptedAnswer: {
-                    "@type": "Answer",
-                    text:
-                        "Beginners, business analysts, MIS executives, marketers, operations and finance professionals who want to analyze data, build dashboards, and automate reports using Excel.",
-                },
-            },
-            {
-                "@type": "Question",
-                name: "What topics are covered in the Excel data analytics training?",
-                acceptedAnswer: {
-                    "@type": "Answer",
-                    text:
-                        "Advanced formulas, PivotTables, Power Query, Power Pivot, data modeling (intro to DAX), interactive charts, KPI dashboards, and best practices for reporting automation.",
-                },
-            },
-            {
-                "@type": "Question",
-                name: "Is there a certificate after the Excel course?",
-                acceptedAnswer: {
-                    "@type": "Answer",
-                    text:
-                        "Yes. You will receive a course completion certificate from Cinute Digital Pvt. Ltd. after finishing the training and project evaluations.",
-                },
-            },
-            {
-                "@type": "Question",
-                name: "Do I need prior Excel experience?",
-                acceptedAnswer: {
-                    "@type": "Answer",
-                    text:
-                        "Basic Excel knowledge helps, but the 20-hour program is beginner-friendly and progresses quickly to advanced analytics and dashboard skills.",
-                },
-            },
-        ],
-    };
 
     /** ---- Optional: visible breadcrumb for internal linking (kept minimal) ---- */
     const breadcrumbs = [
@@ -238,22 +151,6 @@ export default function HeroSection() {
                 <div className="absolute top-1/2 left-1/2 w-72 h-72 bg-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
             </div>
 
-            {/* JSON-LD for SEO */}
-            <script
-                type="application/ld+json"
-                
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(courseJsonLd) }}
-            />
-            <script
-                type="application/ld+json"
-                
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-            />
-            <script
-                type="application/ld+json"
-                
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-            />
 
             <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 {/* Breadcrumbs */}

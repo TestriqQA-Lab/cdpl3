@@ -1,7 +1,6 @@
 // components/sections/ToolsSection.tsx
 "use client";
 
-import { useMemo } from "react";
 import {
   Boxes,        // Hadoop
   Flame,        // Spark
@@ -119,24 +118,7 @@ const TOOLS: Tool[] = [
 ];
 
 export default function ToolsSection() {
-  // SEO: ItemList for rich results
-  const jsonLd = useMemo(
-    () =>
-      JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "ItemList",
-        name: "Big Data Tools & Technologies You’ll Master",
-        itemListElement: TOOLS.map((t, i) => ({
-          "@type": "ListItem",
-          position: i + 1,
-          name: t.name,
-          description: t.desc,
-          keywords:
-            "big data tools, kafka, spark, hadoop, hive, airflow, databricks, aws emr, docker, data engineering stack, streaming pipelines",
-        })),
-      }),
-    []
-  );
+
 
   return (
     <section
@@ -187,8 +169,6 @@ export default function ToolsSection() {
         </p>
       </div>
 
-      {/* JSON-LD */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
     </section>
   );
 }

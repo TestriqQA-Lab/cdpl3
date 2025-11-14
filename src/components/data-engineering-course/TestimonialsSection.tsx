@@ -1,7 +1,6 @@
 // components/sections/TestimonialsSection.tsx
 "use client";
 
-import { useMemo } from "react";
 import { Star, Quote, ShieldCheck, Sparkles } from "lucide-react";
 
 type Testimonial = {
@@ -85,39 +84,6 @@ export default function TestimonialsSection() {
     },
   ];
 
-  // SEO: AggregateRating + Review JSON-LD
-  const jsonLd = useMemo(
-    () =>
-      JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Product",
-        name: "Big Data Engineering — Scalable Data Infrastructure Program",
-        brand: { "@type": "Organization", name: "Cinute Digital Pvt. Ltd." },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: "4.9",
-          reviewCount: testimonials.length.toString(),
-          bestRating: "5",
-          worstRating: "1",
-        },
-        review: testimonials.slice(0, 3).map((t) => ({
-          "@type": "Review",
-          reviewBody: t.quote,
-          reviewRating: {
-            "@type": "Rating",
-            ratingValue: t.rating.toString(),
-            bestRating: "5",
-            worstRating: "1",
-          },
-          author: { "@type": "Person", name: t.name },
-        })),
-        keywords:
-          "big data engineering reviews, Kafka Spark Hadoop course testimonials, data engineer training ratings, cloud data pipelines feedback",
-      }),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
-  );
-
   return (
     <section
       className="relative py-16 md:py-20 bg-white"
@@ -192,8 +158,6 @@ export default function TestimonialsSection() {
         </p>
       </div>
 
-      {/* JSON-LD for SEO */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd }} />
     </section>
   );
 }
