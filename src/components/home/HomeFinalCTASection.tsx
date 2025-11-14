@@ -3,7 +3,7 @@
 import React, { useState, useCallback } from 'react';
 import PhoneInput from 'react-phone-number-input';
 import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle2, Phone, Mail, MapPin, User } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Mail, User } from 'lucide-react';
 
 /**
  * HomeFinalCTASection - Strong Call to Action
