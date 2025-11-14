@@ -175,30 +175,7 @@ export default function HomeFinalCTASection() {
               ))}
             </div>
 
-            {/* Contact Info - Enhanced UI */}
-            <motion.div 
-              className="space-y-3 pt-8 border-t border-gray-200"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-            >
-              <div className="flex items-center gap-3 text-gray-700 font-medium hover:text-indigo-600 transition-colors">
-                <Phone className="w-5 h-5 text-indigo-500" />
-                <span>+91 788-833-838-788</span>
-              </div>
-              <div className="flex items-center gap-3 text-gray-700 font-medium hover:text-indigo-600 transition-colors">
-                <Mail className="w-5 h-5 text-indigo-500" />
-                <span>contact@cinutedigital.com</span>
-              </div>
-              <div className="flex items-start gap-3 text-gray-700 font-medium hover:text-indigo-600 transition-colors">
-                <MapPin className="w-5 h-5 text-indigo-500 mt-1" />
-                <span className="flex flex-col">
-                  <span>Head Office (CDPL)</span>
-                  <span className="text-sm text-gray-500">Mira Road East, Mira Bhayandar, Maharashtra</span>
-                </span>
-              </div>
-            </motion.div>
+           
           </motion.div>
 
           {/* Right Column - Lead Form - Enhanced UI */}
