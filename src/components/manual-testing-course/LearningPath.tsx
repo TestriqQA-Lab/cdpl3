@@ -92,23 +92,6 @@ export default function LearningPath() {
     },
   ];
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "12-Week QA Learning Path",
-    "itemListElement": phases.map((p, idx) => ({
-      "@type": "ListItem",
-      "position": idx + 1,
-      "name": p.title,
-      "description": p.seo,
-      "item": {
-        "@type": "Course",
-        "name": p.title,
-        "provider": { "@type": "Organization", "name": "Your Institute", "sameAs": "https://example.com" }
-      }
-    })),
-  };
-
   return (
     <section className="relative md:py-20 bg-white overflow-hidden" id="learning-path" aria-labelledby="learning-path-title">
       {/* Subtle futuristic accents */}
@@ -295,11 +278,6 @@ export default function LearningPath() {
         </div>
       </div>
 
-      {/* Structured Data for SEO */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
     </section>
   );
 }

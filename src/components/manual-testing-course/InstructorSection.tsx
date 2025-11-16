@@ -103,23 +103,7 @@ const ReviewCard: React.FC<ReviewProps> = ({ quote, name, role }) => (
 
 /* ==================== Instructor Section ==================== */
 export default function InstructorSection() {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Rajesh Sharma",
-    "jobTitle": "Lead QA Instructor",
-    "worksFor": {
-      "@type": "Organization",
-      "name": "Your Institute Name"
-    },
-    "alumniOf": "Fortune 500 Projects",
-    "affiliation": "ISTQB",
-    "award": ["ISTQB Advanced Test Manager", "Top Mentor Award"],
-    "knowsAbout": ["Manual Testing", "Automation Testing", "API Testing", "Agile Testing", "Test Strategy", "Test Management"],
-    "sameAs": [
-      "https://www.istqb.org/"
-    ]
-  };
+
 
   return (
     <section
@@ -129,10 +113,7 @@ export default function InstructorSection() {
       itemType="https://schema.org/CourseInstructor"
       aria-label="Learn from Industry Leaders"
     >
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-14">
